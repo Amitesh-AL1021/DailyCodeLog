@@ -3,82 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily DSA Coding Diary – Amitesh</title>
+  <title>DailyCodeLog – Amitesh</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
-<body class="bg-white text-gray-800 px-6 py-4 max-w-4xl mx-auto">
+<body class="bg-white text-gray-800 px-6 py-4 max-w-3xl mx-auto">
   <header class="text-center mb-6">
-    <h1 class="text-3xl font-bold text-blue-700">📘 Daily DSA Coding Diary</h1>
-    <p class="text-gray-600 mt-2">Here’s my daily progress log of C++ problem-solving, structured by day and topic.</p>
+    <h1 class="text-3xl font-bold text-blue-700">📘 Daily Code Log</h1>
+    <p class="text-gray-600 mt-2">Tracking my daily DSA journey starting from <strong>14th July 2025</strong></p>
   </header>
 
-  <!-- Day 1 -->
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-2 text-blue-600">📅 Day 1</h2>
-    <table class="w-full border border-gray-300">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="py-2 px-4 border-b text-left">📁 Topic</th>
-          <th class="py-2 px-4 border-b text-left">📄 Problem</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Array</td><td class="py-2 px-4 border-b">Plus-One.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Array</td><td class="py-2 px-4 border-b">Beautiful-Pairs.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Array</td><td class="py-2 px-4 border-b">Search-insert-Position.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Backtracking</td><td class="py-2 px-4 border-b">Permutations.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Two Pointer</td><td class="py-2 px-4 border-b">Intersection-of-two-array-II.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Two Pointer</td><td class="py-2 px-4 border-b">Two-Sum.cpp</td></tr>
-      </tbody>
-    </table>
+  <section>
+    <h2 class="text-lg font-semibold mb-3">📅 Logs by Day</h2>
+    <ul id="dailyLogs" class="list-disc list-inside space-y-2"></ul>
   </section>
 
-  <!-- Day 2 -->
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-2 text-blue-600">📅 Day 2</h2>
-    <table class="w-full border border-gray-300">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="py-2 px-4 border-b text-left">📁 Topic</th>
-          <th class="py-2 px-4 border-b text-left">📄 Problem</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Array</td><td class="py-2 px-4 border-b">Move-Zeroes.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Linked List</td><td class="py-2 px-4 border-b">Reverse-a-Linked-List-II.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Linked List</td><td class="py-2 px-4 border-b">Rotate-a-Linked-List.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Linked List</td><td class="py-2 px-4 border-b">Merge-Two-Sorted-Lists.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Linked List</td><td class="py-2 px-4 border-b">Add-Two-Numbers.cpp</td></tr>
-      </tbody>
-    </table>
-  </section>
+  <script>
+    fetch("https://api.github.com/repos/Amitesh-AL1021/DailyCodeLog/contents")
+      .then(response => response.json())
+      .then(data => {
+        const logContainer = document.getElementById("dailyLogs");
 
-  <!-- Day 3 -->
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-2 text-blue-600">📅 Day 3</h2>
-    <table class="w-full border border-gray-300">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="py-2 px-4 border-b text-left">📁 Topic</th>
-          <th class="py-2 px-4 border-b text-left">📄 Problem</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Array</td><td class="py-2 px-4 border-b">Pass-the-Pillow.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Book-Allocation.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Aggressive-Cows.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Koko-Eating-Bananas.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Find-Peak-Element.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Number-of-Occurrences.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Search-in-Rotated-Sorted-Array.cpp</td></tr>
-        <tr class="hover:bg-gray-50"><td class="py-2 px-4 border-b">Binary Search</td><td class="py-2 px-4 border-b">Missing-Number.cpp</td></tr>
-      </tbody>
-    </table>
-  </section>
+        // Sort folders in Day1, Day2... order
+        const dayFolders = data
+          .filter(item => item.type === "dir" && item.name.startsWith("Day"))
+          .sort((a, b) => {
+            const numA = parseInt(a.name.replace("Day", ""));
+            const numB = parseInt(b.name.replace("Day", ""));
+            return numA - numB;
+          });
 
-  <footer class="text-center mt-10 text-sm text-gray-500">
-    📌 New days will be added regularly! Stay tuned for Day 4, Day 5… and all the way to Day 300! 🧠
-  </footer>
+        // Create links
+        dayFolders.forEach(item => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = `https://github.com/Amitesh-AL1021/DailyCodeLog/tree/main/${item.name}`;
+          link.textContent = `📘 ${item.name}`;
+          link.className = "text-blue-600 underline";
+          link.target = "_blank";
+          li.appendChild(link);
+          logContainer.appendChild(li);
+        });
+      });
+  </script>
 </body>
 </html>
