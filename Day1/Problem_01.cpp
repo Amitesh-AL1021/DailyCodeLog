@@ -1,11 +1,3 @@
-# 📘 Day 1 – 14 July 2025 – LeetCode #1 Two Sum
-
-## 🔗 Problem Link:
-[https://leetcode.com/problems/two-sum](https://leetcode.com/problems/two-sum)
-
-## ✅ Full C++ Code:
-
-```cpp
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -29,4 +21,3 @@ int main() {
     cout << "Indices: " << result[0] << " and " << result[1] << endl;
     return 0;
 }
-```
