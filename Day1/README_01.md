@@ -106,3 +106,13 @@ public:
 };
 
 
+# 📘 Day 1 – 14 July 2025
+
+## 🧠 Problems Solved:
+
+| Problem No. | Title              | Code File           | Explanation |
+|-------------|--------------------|----------------------|-------------|
+| 1           | Two Sum            | [Problem_01.cpp](./Problem_01.cpp) | [README_01.md](./README_01.md) |
+| 2           | Add Digits         | [Problem_02.cpp](./Problem_02.cpp) | [README_02.md](./README_02.md) |
+| 3           | Merge Sorted Array | [Problem_03.cpp](./Problem_03.cpp) | [README_03.md](./README_03.md) |
+| 4           | Reverse Integer    | [Problem_04.cpp](./Problem_04.cpp) | [README_04.md](./README_04.md) |
