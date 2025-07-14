@@ -14,7 +14,7 @@
 
   <section>
     <h2 class="text-xl font-semibold mb-4">📂 Logs by Day</h2>
-    <ul id="folder-list" class="space-y-3 list-none"></ul>
+    <ul id="folder-list" class="space-y-3 list-none" aria-label="Daily code log folders"></ul>
   </section>
 
   <script>
@@ -22,36 +22,50 @@
     const REPO_NAME = "DailyCodeLog";
     const BRANCH = "main";
 
-    // Simulated GitHub folders
-    const data = [
-      { name: "Day1", type: "dir" },
-      { name: "Day2", type: "dir" },
-      { name: "Day3", type: "dir" },
-      { name: "Day4", type: "dir" },
-      { name: "Day5", type: "dir" },
-    ];
-
-    const dayFolders = data
-      .filter(item => item.type === "dir" && item.name.startsWith("Day"))
-      .sort((a, b) => {
-        const numA = parseInt(a.name.replace("Day", ""));
-        const numB = parseInt(b.name.replace("Day", ""));
-        return numA - numB;
-      });
-
     const container = document.getElementById("folder-list");
 
-    dayFolders.forEach(folder => {
-      const folderUrl = `https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/tree/${BRANCH}/${folder.name}`;
+    async function fetchDayFolders() {
+      try {
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents`);
+        if (!response.ok) throw new Error('Failed to fetch repo contents');
 
-      const listItem = document.createElement("li");
-      listItem.innerHTML = `
-        <a href="${folderUrl}" target="_blank" class="text-blue-600 hover:underline text-lg">
-          📁 ${folder.name}
-        </a>
-      `;
-      container.appendChild(listItem);
-    });
+        const data = await response.json();
+
+        // Filter directories starting with "Day"
+        const dayFolders = data
+          .filter(item => item.type === "dir" && item.name.startsWith("Day"))
+          .sort((a, b) => {
+            const numA = parseInt(a.name.replace("Day", ""));
+            const numB = parseInt(b.name.replace("Day", ""));
+            return numA - numB;
+          });
+
+        if(dayFolders.length === 0) {
+          container.innerHTML = `<li class="text-gray-500">No daily logs found.</li>`;
+          return;
+        }
+
+        dayFolders.forEach(folder => {
+          const folderUrl = `https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/tree/${BRANCH}/${folder.name}`;
+
+          const listItem = document.createElement("li");
+          listItem.classList.add("border-b", "border-gray-200", "pb-2");
+
+          listItem.innerHTML = `
+            <a href="${folderUrl}" target="_blank" class="text-blue-600 hover:underline text-lg">
+              📁 ${folder.name}
+            </a>
+          `;
+          container.appendChild(listItem);
+        });
+
+      } catch (error) {
+        container.innerHTML = `<li class="text-red-500">Error loading folders: ${error.message}</li>`;
+        console.error(error);
+      }
+    }
+
+    fetchDayFolders();
   </script>
 </body>
 </html>
