@@ -1,23 +1,24 @@
 #include <iostream>
-#include <vector>
-#include <unordered_map>
 using namespace std;
 
-vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> map;
-    for (int i = 0; i < nums.size(); i++) {
-        int diff = target - nums[i];
-        if (map.find(diff) != map.end())
-            return {map[diff], i};
-        map[nums[i]] = i;
+class Solution {
+public:
+    int fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
     }
-    return {};
-}
+};
 
 int main() {
-    vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
-    vector<int> result = twoSum(nums, target);
-    cout << "Indices: " << result[0] << " and " << result[1] << endl;
+    Solution sol;
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    int result = sol.fib(n);
+    cout << "Fibonacci of " << n << " is: " << result << endl;
+
     return 0;
 }
