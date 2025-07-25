@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int calculate(string s) {
+        stack<int> stk;  // Stack to store numbers and intermediate results
+        int num = 0;     // To build multi-digit numbers
+        char sign = '+'; // Default sign before any number
+
+        // Traverse each character in the input string
+        for (int i = 0; i < s.size(); ++i) {
+            char ch = s[i];
+
+            // If current character is a digit, build the number
+            if (isdigit(ch)) {
+                num = num * 10 + (ch - '0');
+            }
+
+            // If the character is an operator (+, -, *, /)
+            // or we've reached the end of the string, process the number
+            if ((!isdigit(ch) && ch != ' ') || i == s.size() - 1) {
+                // Based on the last sign, push or operate with the number
+                if (sign == '+') {
+                    stk.push(num);  // Just push the number
+                } else if (sign == '-') {
+                    stk.push(-num); // Push negative of number
+                } else if (sign == '*') {
+                    int top = stk.top(); stk.pop();
+                    stk.push(top * num); // Multiply top with num and push
+                } else if (sign == '/') {
+                    int top = stk.top(); stk.pop();
+                    stk.push(top / num); // Divide top by num and push
+                }
+
+                // Update the sign to current operator
+                sign = ch;
+
+                // Reset num for the next number
+                num = 0;
+            }
+        }
+
+        // After processing all, add up all values in the stack
+        int result = 0;
+        while (!stk.empty()) {
+            result += stk.top();
+            stk.pop();
+        }
+
+        return result;
+    }
+};
