@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amitesh Thakur | Professional Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Custom styles for background, fonts, and animations */
         body {
@@ -50,6 +51,11 @@
                 transform: translateY(0);
             }
         }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         .animate-fade-in-down {
             animation: fade-in-down 0.8s ease-out forwards;
@@ -73,10 +79,30 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #718096;
         }
+
+        /* Pop-up styles */
+        #welcome-popup-overlay {
+            animation: fade-in 0.3s ease-out;
+        }
+        #welcome-popup {
+            animation: fade-in-up 0.4s ease-out;
+        }
     </style>
 </head>
 
 <body class="text-gray-800 font-sans">
+
+    <!-- Welcome Pop-up -->
+    <div id="welcome-popup-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div id="welcome-popup" class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full text-center relative">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to my portfolio!</h2>
+            <p class="text-gray-600 mb-6">I'm glad you're here. Feel free to look around and explore my work.</p>
+            <button id="close-popup-btn" class="bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                Get Started
+            </button>
+        </div>
+    </div>
+
 
     <!-- Main Portfolio Page Container -->
     <div id="main-portfolio" class="px-4 py-6 md:px-6 md:py-8 max-w-4xl mx-auto">
@@ -88,12 +114,12 @@
             <p class="text-2xl text-gray-600 mb-6 animate-fade-in-up">
                 A passionate Software Engineer & DSA Enthusiast building impactful solutions.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div class="flex flex-wrap justify-center items-center gap-8">
                 <a href="#projects-snapshot" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all duration-300 shadow-lg transform hover:scale-105">
                     View My Projects
                 </a>
-                <a href="mailto:tamitesh35@gmail.com" class="border border-indigo-600 text-indigo-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105">
-                    Get in Touch
+                <a href="https://docs.google.com/document/d/1LEk4xJWErMRZD9uE7RuduBOUGXyf2ah1/edit?usp=drive_link&ouid=105919143170555877025&rtpof=true&sd=true" target="_blank" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all duration-300 shadow-lg transform hover:scale-105">
+                    View Resume
                 </a>
             </div>
         </section>
@@ -251,7 +277,7 @@
     </div>
 
     <!-- Daily Logs Page Container (Initially Hidden) -->
-    <div id="daily-log-page" class="hidden px-4 py-6 md:px-6 md:py-8 max-w-3xl mx-auto">
+    <div id="daily-log-page" class="hidden px-4 py-6 md:px-6 md:py-8 max-w-4xl mx-auto">
         <!-- Header Section -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-12">
             <header class="flex justify-between items-center">
@@ -267,6 +293,12 @@
                 </div>
             </header>
         </div>
+        
+        <!-- Progress Graph Section -->
+        <section id="progress-graph" class="mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">📈 Progress Overview</h2>
+            <canvas id="myProgressChart"></canvas>
+        </section>
 
         <!-- Logs by Day Section -->
         <section class="mb-12 bg-white p-6 rounded-lg shadow-md">
@@ -284,10 +316,37 @@
 
 
     <script>
+        // --- Pop-up Logic ---
+        const popupOverlay = document.getElementById('welcome-popup-overlay');
+        const closePopupButton = document.getElementById('close-popup-btn');
+
+        // Function to hide the pop-up
+        function hidePopup() {
+            sessionStorage.setItem('visited', 'true');
+            popupOverlay.classList.add('hidden');
+        }
+
+        // Show pop-up only if the user hasn't visited in the current session
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!sessionStorage.getItem('visited')) {
+                popupOverlay.classList.remove('hidden');
+            }
+        });
+
+        // Event listeners to close the pop-up
+        closePopupButton.addEventListener('click', hidePopup);
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                hidePopup();
+            }
+        });
+
+
         // --- Page Navigation ---
         const mainPortfolio = document.getElementById('main-portfolio');
         const dailyLogPage = document.getElementById('daily-log-page');
         let logsFetched = false; // Flag to prevent multiple API calls
+        let progressChart = null; // To hold the chart instance
 
         function showDailyLogs() {
             mainPortfolio.classList.add('hidden');
@@ -336,10 +395,55 @@
             }
         }
         
-        // Update the clock every second
         setInterval(updateClock, 1000);
-        // Initial call to display clock immediately
         updateClock();
+
+        // --- Progress Graph ---
+        function renderProgressGraph(dayLabels) {
+            const ctx = document.getElementById('myProgressChart').getContext('2d');
+            
+            if (progressChart) {
+                progressChart.destroy(); // Destroy previous chart instance if it exists
+            }
+
+            progressChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dayLabels,
+                    datasets: [{
+                        label: 'Cumulative Days Logged',
+                        data: dayLabels.map((_, index) => index + 1), // Cumulative count
+                        borderColor: 'rgba(79, 70, 229, 1)', // Indigo color
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Total Days'
+                            }
+                        },
+                        x: {
+                             title: {
+                                display: true,
+                                text: 'Day Number'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
 
 
         // --- GitHub API Fetching for Daily Logs ---
@@ -374,9 +478,14 @@
 
                 if (dayFolders.length === 0) {
                     folderGrid.innerHTML = `<div class="col-span-full text-gray-500 text-lg text-center">No 'DayX' folders found in the repository.</div>`;
+                    document.getElementById('progress-graph').style.display = 'none'; // Hide graph if no data
                     return;
                 }
+                
+                const dayLabels = dayFolders.map(folder => folder.name.replace("Day", ""));
+                renderProgressGraph(dayLabels); // Render the graph with fetched data
 
+                folderGrid.innerHTML = ''; // Clear loading message
                 dayFolders.forEach(folder => {
                     const folderUrl = `https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/tree/${BRANCH}/${folder.name}`;
                     const dayNumber = folder.name.replace("Day", "");
