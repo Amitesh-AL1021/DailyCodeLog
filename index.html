@@ -1,208 +1,416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amitesh Thakur | Professional Portfolio </title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Link to your custom CSS file for background animations -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amitesh Thakur | Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for background, fonts, and animations */
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            /* A subtle, light animated gradient background */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Custom animation keyframes */
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fade-in-down 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0aec0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+    </style>
 </head>
 
-<body class="text-gray-800 font-sans px-4 py-6 md:px-6 md:py-8 max-w-4xl mx-auto">
+<body class="text-gray-800 font-sans">
 
-  <!-- Hero Section -->
-  <section id="hero" class="text-center mb-16 py-12 bg-white bg-opacity-80 rounded-lg shadow-xl">
-    <h1 class="text-5xl font-extrabold text-blue-800 mb-4 animate-fade-in-down">
-      Hello, I'm Amitesh Thakur 👋
-    </h1>
-    <p class="text-2xl text-gray-700 mb-6 animate-fade-in-up">
-      A passionate Software Engineer & DSA Enthusiast building impactful solutions.
-    </p>
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="#projects-snapshot"
-        class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg transform hover:scale-105">
-        View My Projects
-      </a>
-      <a href="mailto:tamitesh35@gmail.com"
-        class="border border-blue-600 text-blue-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105">
-        Get in Touch
-      </a>
-      <!-- Placeholder for Resume Link -->
-      <!-- <a href="/path/to/your/resume.pdf" target="_blank"
-        class="border border-gray-400 text-gray-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-        Download Resume
-      </a> -->
+    <!-- Main Portfolio Page Container -->
+    <div id="main-portfolio" class="px-4 py-6 md:px-6 md:py-8 max-w-4xl mx-auto">
+        <!-- Hero Section -->
+        <section id="hero" class="text-center mb-16 py-12 bg-white rounded-lg shadow-xl">
+            <h1 class="text-5xl font-extrabold text-gray-800 mb-4 animate-fade-in-down">
+                Hello, I'm Amitesh Thakur 👋
+            </h1>
+            <p class="text-2xl text-gray-600 mb-6 animate-fade-in-up">
+                A passionate Software Engineer & DSA Enthusiast building impactful solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#projects-snapshot" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all duration-300 shadow-lg transform hover:scale-105">
+                    View My Projects
+                </a>
+                <a href="mailto:tamitesh35@gmail.com" class="border border-indigo-600 text-indigo-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105">
+                    Get in Touch
+                </a>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- About Me -->
+        <section id="about-me" class="mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">💡 About Me</h2>
+            <blockquote class="pl-4 border-l-4 border-indigo-400 text-xl italic text-gray-700 bg-indigo-50 p-4 rounded-md">
+                <p>Hi, I’m <strong>Amitesh from Raisen (M.P.)</strong>, currently pursuing <strong>B.Tech in CSE-AIML</strong> at
+                    <strong> <a href="https://lnct.ac.in/#" target="_blank" class="text-indigo-600 hover:underline hover:text-indigo-800 transition-colors duration-200">LNCT Bhopal</a></strong>.<br>
+                    I’m passionate about DSA, software development, and building impactful solutions.
+                </p>
+            </blockquote>
+            <ul class="list-disc list-inside mt-6 space-y-2 text-lg text-gray-700">
+                <li>🎯 Career Goal: Software Engineer + Startup Founder</li>
+                <li>🧠 Interests: Algorithms, Web Development, System Design</li>
+            </ul>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- Skills & Tools -->
+        <section id="skills-tools" class="mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">🧰 Skills & Tools</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[400px] border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-5 border border-gray-200 text-left bg-indigo-100 font-bold text-gray-700">Language</th>
+                            <th class="py-3 px-5 border border-gray-200 text-left bg-indigo-100 font-bold text-gray-700">Tools & Frameworks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-indigo-50 transition-colors duration-150">
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">C++, C</td>
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">Git, GitHub, VS Code, Docker</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50 transition-colors duration-150">
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">HTML, CSS</td>
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">Bootstrap, Tailwind CSS</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50 transition-colors duration-150">
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">JavaScript</td>
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">React (Learning…)</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50 transition-colors duration-150">
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">DBMS</td>
+                            <td class="py-3 px-5 border border-gray-200 text-gray-800">MySQL, MongoDB (Basics)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- Projects Snapshot -->
+        <section id="projects-snapshot" class="mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">📁 My Key Projects</h2>
+            <ul class="list-disc list-inside space-y-6 ml-4 text-lg text-gray-700">
+                <li><strong>🏦 Bank Management System</strong> – A console-based project for managing accounts and transactions. <span class="text-gray-600 text-base">(Tech: Python)</span></li>
+                <li><strong>🛍️ Amazon & Zomato Clone</strong> – Frontend clone of shopping and food delivery websites with UI and fake checkout. <span class="text-gray-600 text-base">(Tech: HTML, CSS, JavaScript)</span></li>
+                <li><strong>🧠 Jarvis Virtual Assistant</strong> – AI-based desktop assistant with voice command features. <span class="text-gray-600 text-base">(Tech: Python, Speech Recognition)</span></li>
+                <li><strong>🛒 DesiHue (Major Project)</strong> – Full-fledged Indian shopping website with category filters, login, and cart system. <span class="text-gray-600 text-base">(Tech: MERN Stack)</span></li>
+                <li><strong>💖 ThinkU App (My Favorite)</strong> – Mental health & gratitude journal app with emotion tracking and daily notes. <span class="text-gray-600 text-base">(Tech: React Native, Firebase, LLM)</span></li>
+            </ul>
+            <div class="text-center mt-8">
+                <a href="https://github.com/Amitesh-AL1021?tab=repositories" target="_blank" class="bg-gray-800 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-900 transition-all duration-300 shadow-lg transform hover:scale-105">
+                    View All Projects on GitHub
+                </a>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+        
+        <!-- Stats Section -->
+        <section id="stats" class="mb-12 space-y-12">
+            <!-- LeetCode Stats -->
+            <div id="leetcode-stats" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-semibold mb-6 text-gray-700">🧠 LeetCode Stats</h2>
+                <p class="text-gray-600 mb-4 text-lg">Tracking my daily DSA journey through LeetCode practice:</p>
+                <img src="https://leetcard.jacoblin.cool/TUF-ASUS?theme=light&ext=activity" alt="LeetCode Stats" class="rounded-lg shadow-lg w-full max-w-lg mx-auto block" />
+            </div>
+            <!-- GitHub Stats -->
+            <div id="github-stats" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-semibold mb-6 text-gray-700">📈 GitHub Stats</h2>
+                <p class="text-gray-600 mb-4 text-lg">Tracking my open-source journey and daily GitHub contributions.</p>
+                <div class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4">
+                    <img src="https://github-readme-stats.vercel.app/api?username=Amitesh-AL1021&show_icons=true&theme=buefy&hide_border=true" alt="Amitesh's GitHub stats" class="rounded-lg shadow-md max-w-full h-auto" />
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Amitesh-AL1021&layout=compact&theme=buefy&hide_border=true" alt="Top Languages" class="rounded-lg shadow-md max-w-full h-auto" />
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- Daily Code Log Link -->
+        <section id="daily-log-link" class="text-center mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">🗓️ My Daily Code Log</h2>
+            <p class="text-gray-700 text-lg mb-6">
+                See my consistent progress and daily learning journey in Data Structures & Algorithms.
+            </p>
+            <button onclick="showDailyLogs()" class="bg-teal-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-teal-600 transition-all duration-300 shadow-lg transform hover:scale-105">
+                View Daily Logs
+            </button>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- Feedback Form Section -->
+        <section id="feedback-form" class="mb-12 bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700 text-center">Leave a Feedback</h2>
+            <form action="https://formspree.io/f/your_unique_id" method="POST" class="max-w-xl mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-600 font-medium mb-2">Your Name</label>
+                    <input type="text" id="name" name="name" class="w-full bg-gray-50 border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                </div>
+                <div class="mb-6">
+                    <label for="feedback-message" class="block text-gray-600 font-medium mb-2">Feedback</label>
+                    <textarea id="feedback-message" name="message" rows="5" class="w-full bg-gray-50 border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg transform hover:scale-105">Submit Feedback</button>
+                </div>
+            </form>
+        </section>
+
+        <hr class="my-12 border-t-2 border-indigo-200 rounded-full" />
+
+        <!-- Let's Connect -->
+        <section id="lets-connect" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">🔗 Let’s Connect</h2>
+            <p class="text-gray-700 text-lg mb-6">
+                I'm always open to new opportunities and collaborations. Feel free to reach out!
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/Amitesh-AL1021" target="_blank" class="block hover:scale-105 transition-transform duration-200">
+                    <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github" alt="GitHub" />
+                </a>
+                <a href="https://www.linkedin.com/in/amitesh-thakur-4a6603290" target="_blank" class="block hover:scale-105 transition-transform duration-200">
+                    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
+                </a>
+                <a href="mailto:tamitesh35@gmail.com" class="block hover:scale-105 transition-transform duration-200">
+                    <img src="https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail" alt="Email" />
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-600 text-sm">
+            <p>&copy; <span id="main-year"></span> Amitesh Thakur. All rights reserved.</p>
+        </footer>
     </div>
-  </section>
 
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
+    <!-- Daily Logs Page Container (Initially Hidden) -->
+    <div id="daily-log-page" class="hidden px-4 py-6 md:px-6 md:py-8 max-w-3xl mx-auto">
+        <!-- Header Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+            <header class="flex justify-between items-center">
+                <div>
+                    <button onclick="showMainPortfolio()" class="inline-block">
+                        <h1 class="text-4xl font-extrabold text-indigo-700 hover:text-indigo-800 transition-colors duration-200">📘 DailyCodeLog</h1>
+                    </button>
+                     <p class="text-gray-600 mt-2 text-lg">Click the title above to go back.</p>
+                </div>
+                <div id="real-time-clock" class="text-right">
+                    <p class="text-lg font-semibold text-gray-700"></p>
+                    <p class="text-sm text-gray-500"></p>
+                </div>
+            </header>
+        </div>
 
-  <!-- About Me -->
-  <section id="about-me" class="mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">💡 About Me</h2>
-    <blockquote class="pl-4 border-l-4 border-blue-400 text-xl italic text-gray-700 bg-blue-50 p-4 rounded-md">
-      <p>Hi, I’m <strong>Amitesh from Raisen (M.P.)</strong>, currently pursuing <strong>B.Tech in CSE-AIML</strong> at
-        <strong> <a href="https://lnct.ac.in/#" target="_blank"
-            class="text-blue-600 hover:underline hover:text-blue-800 transition-colors duration-200">LNCT Bhopal</a></strong>.<br>
-        I’m passionate about DSA, software development, and building impactful solutions.
-      </p>
-    </blockquote>
-    <ul class="list-disc list-inside mt-6 space-y-2 text-lg text-gray-700">
-      <li>🎯 Career Goal: Software Engineer + Startup Founder</li>
-      <li>🧠 Interests: Algorithms, Web Development, System Design</li>
-    </ul>
-  </section>
+        <!-- Logs by Day Section -->
+        <section class="mb-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-6 text-gray-700">📂 Logs by Day</h2>
+            <div id="folder-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4" aria-label="Daily code log folders">
+                <div id="loading-message" class="col-span-full text-gray-500 text-lg animate-pulse text-center">Loading daily logs...</div>
+            </div>
+        </section>
 
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
-
-  <!-- Skills & Tools -->
-  <section id="skills-tools" class="mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">🧰 Skills & Tools</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-[400px] border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
-        <thead>
-          <tr>
-            <th class="py-3 px-5 border border-gray-200 text-left bg-blue-100 font-bold text-gray-700">Language</th>
-            <th class="py-3 px-5 border border-gray-200 text-left bg-blue-100 font-bold text-gray-700">Tools & Frameworks</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="hover:bg-blue-50 transition-colors duration-150">
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">C++, C</td>
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">Git, GitHub, VS Code, Docker</td>
-          </tr>
-          <tr class="hover:bg-blue-50 transition-colors duration-150">
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">HTML, CSS</td>
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">Bootstrap, Tailwind CSS</td>
-          </tr>
-          <tr class="hover:bg-blue-50 transition-colors duration-150">
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">JavaScript</td>
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">React (Learning…)</td>
-          </tr>
-          <tr class="hover:bg-blue-50 transition-colors duration-150">
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">DBMS</td>
-            <td class="py-3 px-5 border border-gray-200 text-gray-800">MySQL, MongoDB (Basics)</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-600 text-sm">
+            <p>&copy; <span id="log-year"></span> Amitesh Thakur. All rights reserved.</p>
+        </footer>
     </div>
-  </section>
 
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
 
-  <!-- Projects Snapshot -->
-  <section id="projects-snapshot" class="mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">📁 My Key Projects</h2>
-    <ul class="list-disc list-inside space-y-6 ml-4 text-lg text-gray-700">
-
-      <li>
-        <strong>🏦 Bank Management System</strong> – A console-based project for managing accounts and transactions.
-        <span class="text-gray-600 text-base">(Tech: Python)</span>
-      </li>
-
-      <li>
-        <strong>🛍️ Amazon & Zomato Clone</strong> – Frontend clone of shopping and food delivery websites with UI and
-        fake checkout.
-        <span class="text-gray-600 text-base">(Tech: HTML, CSS, JavaScript)</span>
-      </li>
-
-      <li>
-        <strong>🧠 Jarvis Virtual Assistant</strong> – AI-based desktop assistant with voice command features.
-        <span class="text-gray-600 text-base">(Tech: Python, Speech Recognition)</span>
-      </li>
-
-      <li>
-        <strong>🛒 DesiHue (Major Project)</strong> – Full-fledged Indian shopping website with category filters,
-        login, and cart system.
-        <span class="text-gray-600 text-base">(Tech: MERN Stack)</span>
-      </li>
-
-      <li>
-        <strong>💖 ThinkU App (My Favorite)</strong> – Mental health & gratitude journal app with emotion tracking and
-        daily notes.
-        <span class="text-gray-600 text-base">(Tech: React Native, Firebase, LLM)</span>
-      </li>
-
-    </ul>
-    <div class="text-center mt-8">
-      <a href="https://github.com/Amitesh-AL1021?tab=repositories" target="_blank"
-        class="bg-gray-700 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg transform hover:scale-105">
-        View All Projects on GitHub
-      </a>
-    </div>
-  </section>
-
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
-
-  <!-- LeetCode Stats -->
-  <section id="leetcode-stats" class="mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">🧠 LeetCode Stats</h2>
-    <p class="text-gray-600 mb-4 text-lg">Tracking my daily DSA journey through LeetCode practice:</p>
-    <img src="https://leetcard.jacoblin.cool/TUF-ASUS?theme=dark&ext=activity" alt="LeetCode Stats"
-      class="rounded-lg shadow-lg w-full max-w-lg mx-auto block" />
-  </section>
-
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
-
-  <!-- GitHub Stats -->
-  <section id="github-stats" class="mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">📈 GitHub Stats</h2>
-    <p class="text-gray-600 mb-4 text-lg">Tracking my open-source journey and daily GitHub contributions.</p>
-    <div class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4">
-      <img src="https://github-readme-stats.vercel.app/api?username=Amitesh-AL1021&show_icons=true&theme=tokyonight&hide_border=true"
-        alt="Amitesh's GitHub stats" class="rounded-lg shadow-md max-w-full h-auto" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Amitesh-AL1021&layout=compact&theme=tokyonight&hide_border=true"
-        alt="Top Languages" class="rounded-lg shadow-md max-w-full h-auto" />
-    </div>
-  </section>
-
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
-
-  <!-- Daily Code Log Link -->
-  <section id="daily-log-link" class="text-center mb-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">🗓️ My Daily Code Log</h2>
-    <p class="text-gray-700 text-lg mb-6">
-      See my consistent progress and daily learning journey in Data Structures & Algorithms.
-    </p>
-    <a href="coding.html"
-      class="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-lg transform hover:scale-105">
-      View Daily Logs
-    </a>
-  </section>
-
-  <hr class="my-12 border-t-2 border-blue-400 rounded-full opacity-75" />
-
-  <!-- Let's Connect -->
-  <section id="lets-connect" class="mb-8 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-700">🔗 Let’s Connect</h2>
-    <p class="text-gray-700 text-lg mb-6">
-      I'm always open to new opportunities and collaborations. Feel free to reach out!
-    </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="https://github.com/Amitesh-AL1021" target="_blank"
-        class="block hover:scale-105 transition-transform duration-200">
-        <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github" alt="GitHub" />
-      </a>
-      <a href="https://www.linkedin.com/in/amitesh-thakur-4a6603290" target="_blank"
-        class="block hover:scale-105 transition-transform duration-200">
-        <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
-      </a>
-      <a href="mailto:tamitesh35@gmail.com" class="block hover:scale-105 transition-transform duration-200">
-        <img src="https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail" alt="Email" />
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer (Optional) -->
-  <footer class="text-center mt-16 text-gray-500 text-sm">
-    <p>&copy; <span id="current-year"></span> Amitesh Thakur. All rights reserved.</p>
     <script>
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-  </footer>
+        // --- Page Navigation ---
+        const mainPortfolio = document.getElementById('main-portfolio');
+        const dailyLogPage = document.getElementById('daily-log-page');
+        let logsFetched = false; // Flag to prevent multiple API calls
 
+        function showDailyLogs() {
+            mainPortfolio.classList.add('hidden');
+            dailyLogPage.classList.remove('hidden');
+            window.scrollTo(0, 0); // Scroll to top of new view
+            // Fetch logs only on the first time the page is shown
+            if (!logsFetched) {
+                fetchDayFolders();
+                logsFetched = true;
+            }
+        }
+
+        function showMainPortfolio() {
+            dailyLogPage.classList.add('hidden');
+            mainPortfolio.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // --- Real-time Clock ---
+        const clockElement = document.getElementById('real-time-clock');
+
+        function updateClock() {
+            const now = new Date();
+            const optionsDate = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'Asia/Kolkata'
+            };
+            const optionsTime = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                timeZone: 'Asia/Kolkata'
+            };
+            const dateString = now.toLocaleDateString('en-IN', optionsDate);
+            const timeString = now.toLocaleTimeString('en-IN', optionsTime);
+            
+            if(clockElement) {
+                clockElement.innerHTML = `
+                    <p class="text-lg font-semibold text-gray-700">${timeString}</p>
+                    <p class="text-sm text-gray-500">${dateString}</p>
+                `;
+            }
+        }
+        
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+        // Initial call to display clock immediately
+        updateClock();
+
+
+        // --- GitHub API Fetching for Daily Logs ---
+        const GITHUB_USERNAME = "Amitesh-AL1021";
+        const REPO_NAME = "DailyCodeLog";
+        const BRANCH = "main";
+
+        const folderGrid = document.getElementById("folder-grid");
+        const loadingMessage = document.getElementById("loading-message");
+
+        async function fetchDayFolders() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents`);
+                
+                if (loadingMessage) {
+                    loadingMessage.remove();
+                }
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Failed to fetch repository contents. Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const dayFolders = data
+                    .filter(item => item.type === "dir" && item.name.startsWith("Day"))
+                    .sort((a, b) => {
+                        const numA = parseInt(a.name.replace("Day", ""), 10);
+                        const numB = parseInt(b.name.replace("Day", ""), 10);
+                        return numA - numB;
+                    });
+
+                if (dayFolders.length === 0) {
+                    folderGrid.innerHTML = `<div class="col-span-full text-gray-500 text-lg text-center">No 'DayX' folders found in the repository.</div>`;
+                    return;
+                }
+
+                dayFolders.forEach(folder => {
+                    const folderUrl = `https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/tree/${BRANCH}/${folder.name}`;
+                    const dayNumber = folder.name.replace("Day", "");
+
+                    const dayCard = document.createElement("div");
+                    dayCard.className = "bg-indigo-50 p-4 rounded-lg shadow-sm hover:shadow-md hover:bg-indigo-100 transition-all duration-200 text-center flex flex-col items-center justify-center cursor-pointer";
+                    dayCard.setAttribute("role", "link");
+                    dayCard.setAttribute("tabindex", "0");
+                    dayCard.onclick = () => window.open(folderUrl, '_blank');
+                    dayCard.onkeydown = (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            window.open(folderUrl, '_blank');
+                        }
+                    };
+                    dayCard.innerHTML = `
+                        <span class="text-4xl mb-2">🗓️</span>
+                        <span class="text-xl font-semibold text-indigo-700">Day ${dayNumber}</span>
+                    `;
+                    folderGrid.appendChild(dayCard);
+                });
+
+            } catch (error) {
+                if (loadingMessage) {
+                    loadingMessage.remove();
+                }
+                folderGrid.innerHTML = `<div class="col-span-full text-red-600 text-lg bg-red-50 p-3 rounded-md border border-red-200 text-center">Error: ${error.message}. Please check the GitHub username/repo or API rate limits.</div>`;
+                console.error("Error fetching daily logs:", error);
+            }
+        }
+
+        // --- Footer Year ---
+        document.getElementById('main-year').textContent = new Date().getFullYear();
+        document.getElementById('log-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>
